@@ -1,0 +1,5 @@
+'use client';
+import {Select,SelectContent,SelectItem,SelectTrigger,SelectValue} from '@/components/ui/select';
+import {ArrowUpRight,Play} from 'lucide-react';
+export function Header({admin=false}:{admin?:boolean}){return <header className="header"><a href="/" className="brand" aria-label="Caractère Media, accueil"><span className="brandmark"><Play fill="currentColor" size={17}/></span><span>caractère<span className="brand-sub">MEDIA</span></span></a><nav><span className="header-note">LE STUDIO DE VOS IDÉES.</span><a className="nav-link" href={admin?'/':'/admin'}>{admin?'Voir le site':'Espace studio'}<ArrowUpRight size={16}/></a></nav></header>}
+export function Pick({value,onChange,options,label}:{value:string;onChange:(s:string)=>void;options:{value:string;label:string}[];label:string}){return <Select value={value} onValueChange={onChange}><SelectTrigger className="select-field" aria-label={label}><SelectValue/></SelectTrigger><SelectContent>{options.map(o=><SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}</SelectContent></Select>}

@@ -1,0 +1,12 @@
+export const offers=[{id:'studio',name:'Studio seul',price:4000,tag:'Votre espace, votre matériel',description:'Le décor et l’éclairage pour créer à votre rythme.',items:['Studio privatisé','Décor & éclairage','Vous apportez votre matériel']},{id:'shoot',name:'Studio + tournage',price:6000,tag:'Vous créez. On filme.',description:'Concentrez-vous sur votre contenu. On s’occupe de la captation.',items:['Studio & éclairage','Captation avec opérateur','Livraison des fichiers bruts']},{id:'ready',name:'Prêt à publier',price:null,tag:'De l’idée à la publication',description:'Un accompagnement adapté à votre projet et à vos livrables.',items:['Studio & tournage','Montage personnalisé','Livrables définis ensemble']}];
+export const extras=[{id:'clips',name:'Pack de 3 extraits verticaux',description:'Des moments forts montés et sous-titrés pour Reels, TikTok et Shorts.'},{id:'thumbnail',name:'Miniature YouTube',description:'Une couverture pensée pour votre vidéo et votre identité.'},{id:'scripts',name:'Préparation des scripts',description:'Structure, accroches et préparation avant votre tournage.'}];
+export const formats=['Podcast','Vidéos verticales','YouTube'];
+export const defaults={open:9,close:20,days:[0,1,2,3,4,5,6],buffer:0};
+export type Settings=typeof defaults;
+export type Booking={id:string;name:string;phone:string;format:string;offer:string;start:number;end:number;occupied_until:number;extras:string;notes:string;status:string;price:number|null;created:number};
+export const money=(n:number)=>new Intl.NumberFormat('fr-DZ').format(n)+' DA';
+export const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Algiers',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+export const minutes=(date:string,hour:number)=>Date.parse(date+'T'+String(hour).padStart(2,'0')+':00:00+01:00')/60000;
+export const dateLabel=(n:number,opts:Intl.DateTimeFormatOptions={weekday:'long',day:'numeric',month:'long'})=>new Intl.DateTimeFormat('fr-FR',{timeZone:'Africa/Algiers',...opts}).format(new Date(n*60000));
+export const dateKey=(n:number)=>new Intl.DateTimeFormat('en-CA',{timeZone:'Africa/Algiers',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(n*60000));
+export const hourLabel=(n:number)=>dateLabel(n,{hour:'2-digit',minute:'2-digit'});
