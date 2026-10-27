@@ -9,7 +9,7 @@ export async function POST(req:NextRequest){
   if(lead.name.length<2||!lead.company||!/^\S+@\S+\.\S+$/.test(lead.email)||lead.message.length<5||!lead.service)return NextResponse.json({error:'Merci de compléter les champs obligatoires.'},{status:400});
   const url=process.env.MEDIA_SUPABASE_URL,key=process.env.MEDIA_SUPABASE_PUBLISHABLE_KEY;
   if(!url||!key)return NextResponse.json({error:'Service momentanément indisponible.'},{status:503});
-  const r=await fetch(url+'/rest/v1/media_leads',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Authorization':'Bearer '+key,'Prefer':'return=minimal'},body:JSON.stringify(lead),cache:'no-store'});
+  const r=await fetch(url+'/rest/v1/media_leads',{method:'POST',headers:{'Content-Type':'application/json','apikey':key,'Prefer':'return=minimal'},body:JSON.stringify(lead),cache:'no-store'});
   if(!r.ok){console.error('Lead insert failed',r.status);return NextResponse.json({error:'Envoi impossible. Réessayez.'},{status:502});}
   return NextResponse.json({ok:true});
  }catch{return NextResponse.json({error:'Requête invalide'},{status:400})}
